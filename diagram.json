@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "author": "ChaiChaiChao20",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr", "top": -25, "left": 265, "attrs": { "lux": "400" } },
+    { "type": "wokwi-relay-module", "id": "relay", "top": 155, "left": 270, "attrs": { "transistor": "pnp" } },
+    { "type": "wokwi-resistor", "id": "rLow", "top": 295, "left": 390, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "ledLow", "top": 285, "left": 490, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "rHigh", "top": 365, "left": 390, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "ledHigh", "top": 355, "left": 490, "attrs": { "color": "green" } }
+  ],
+  "connections": [
+    [ "uno:5V", "ldr:VCC", "red", [] ],
+    [ "uno:GND.1", "ldr:GND", "black", [] ],
+    [ "ldr:AO", "uno:A0", "green", [] ],
+    [ "uno:5V", "relay:VCC", "red", [] ],
+    [ "uno:GND.1", "relay:GND", "black", [] ],
+    [ "uno:7", "relay:IN", "green", [] ],
+    [ "uno:5V", "relay:COM", "red", [] ],
+    [ "relay:NC", "rLow:1", "green", [] ],
+    [ "rLow:2", "ledLow:A", "green", [] ],
+    [ "ledLow:C", "uno:GND.1", "black", [] ],
+    [ "relay:NO", "rHigh:1", "green", [] ],
+    [ "rHigh:2", "ledHigh:A", "green", [] ],
+    [ "ledHigh:C", "uno:GND.1", "black", [] ]
+  ],
+  "dependencies": {}
+}
